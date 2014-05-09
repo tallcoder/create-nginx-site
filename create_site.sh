@@ -1,7 +1,4 @@
 #!/bin/bash
-# Author: Seb Dangerfield
-# URL: http://sebdangerfield.me.uk
-#
 
 NGINX_ALL_VHOSTS='/etc/nginx/sites-available'
 NGINX_ENABLED_VHOSTS='/etc/nginx/sites-enabled'
@@ -28,14 +25,6 @@ fi
 
 USERNAME='www-data'
 HOME_DIR=$DOMAIN
-
-# Create a new user!
-#echo "Please specify the username for this site?"
-#read USERNAME
-#sudo adduser -d$WEB_DIR/$USERNAME $USERNAME
-#echo "Please enter a password for the user: $USERNAME"
-#read -s PASS
-#sudo echo $PASS | sudo passwd --stdin $USERNAME
 
 # Now we need to copy the virtual host template
 CONFIG=$NGINX_ALL_VHOSTS/$DOMAIN.conf

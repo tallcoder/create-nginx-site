@@ -4,6 +4,7 @@ server {
   root ROOT;
  
   access_log /var/log/nginx/DOMAIN.access.log;
+  error_log /var/log/nginx/DOMAIN.error.log
  
   index index.html index.htm;
  
@@ -16,4 +17,21 @@ server {
   location ~ /\.ht {
     deny  all;
   }
+
+  location ~ \.php$ {
+    root  ROOT;
+    try_files  $uri  $uri/  /index.php?$args ;
+    index  index.html index.htm index.php;
+    fastcgi_index index.php;
+    fastcgi_param PATH_INFO $fastcgi_path_info;
+    fastcgi_param PATH_TRANSLATED $document_root$fastcgi_path_info;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    fastcgi_param APP_ENV dev;
+
+    fastcgi_pass unix:/var/run/php5-fpm.sock;
+    fastcgi_split_path_info ^(.+\.php)(/.+)$;
+    include fastcgi_params;
+  }
+
+  sendfile off;
 }
