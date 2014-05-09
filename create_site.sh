@@ -40,7 +40,7 @@ USERNAME='www-data'
 CONFIG=$NGINX_ALL_VHOSTS/$DOMAIN.conf
 sudo cp $CURRENT_DIR/virtual_host.template $CONFIG
 sudo $SED -i "s/DOMAIN/$DOMAIN/g" $CONFIG
-sudo $SED -i "s#ROOT#$WEB_DIR/$HOME_DIR\/public_html#g" $CONFIG
+sudo $SED -i "s/ROOT/$WEB_DIR/$HOME_DIR\/public_html/g" $CONFIG
 
 #sudo usermod -aG $USERNAME nginx
 #sudo chmod g+rxs $WEB_DIR/$USERNAME
