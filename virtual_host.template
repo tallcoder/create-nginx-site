@@ -8,7 +8,15 @@ server {
     access_log /var/log/nginx/DOMAIN.access.log;
     error_log /var/log/nginx/DOMAIN.error.log;
 
-    index index.html index.htm;
+    location / {
+        root  ROOT;
+        try_files  $uri  $uri/  /index.php?$args ;
+        index  index.html index.htm index.php;
+    }
+
+    #location /admin/public/ {
+    #    try_files $uri $uri/ /admin/public/index.php?$args;
+    #}
 
     # serve static files directly
     location ~* \.(jpg|jpeg|gif|css|png|js|ico|html)$ {
